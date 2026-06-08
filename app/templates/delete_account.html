@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Видалення облікового запису</title>
+</head>
+<body>
+    <a href="{{ url_for('main.home') }}">Головна сторінка</a>
+    <br />
+    <a href="{{ url_for('main.profile') }}">Повернутися до облікового запису</a>
+    <div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    </div>
+    <div>
+        <h1>Видалення облікового запису</h1>
+        <p>Ви дійсно бажаєте видалити свій обліковий запис?</p>
+        <p>Після видалення відновити акаунт і пов'язані з ним дані буде неможливо.</p>
+        <form action="{{ url_for('auth.delete_account') }}" method="post">
+            <button type="submit">Видалити</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Обліковий запис</title>
+</head>
+<body>
+    <div>
+        <a href="{{ url_for('main.home') }}">Головна сторінка</a>
+    </div>
+    <div>
+        <a href="{{ url_for('auth.update_account') }}">Зміна данних облікового запису</a>
+    </div>
+    <br />
+    <div>
+        <form action="{{ url_for('auth.logout') }}">
+            <button type="submit">Вийти з облікового запису</button>
+        </form>
+    </div>
+    <div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    </div>
+    <br />
+    <div>
+        <a href="{{ url_for('auth.delete_user') }}">Видалити обліковий запис</a>
+    </div>
+    <br />
+    <div></div>
+    <p></p>
+
+</body>
+</html>

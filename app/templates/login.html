@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Вхід</title>
+</head>
+<body>
+    <div>
+        <a href="{{ url_for('main.home') }}">Головна сторінка</a>
+    </div>
+    <h1>Вхід</h1>
+    <div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    </div>
+    <form action="/login" method="post">
+        <div>
+            <label for="email">Імейл</label>
+            <input id="email" type="text" name="email"
+                   placeholder="Введіть імейл" />
+            <br/>
+            <label for="password">Пароль</label>
+            <input id="password" type="password" name="password"
+                   placeholder="Введіть пароль" />
+            <br/>
+            <button type="submit">Увійти</button>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Реєстрація</title>
+</head>
+<body>
+    <div>
+        <a href="{{ url_for('main.home') }}">Головна сторінка</a>
+    </div>
+    <h1>Регістрація</h1>
+    <div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    </div>
+    <form action="/register" method="post">
+        <div>
+            <label for="first_name">Ім'я</label>
+            <input id="first_name" type="text" name="first_name"
+                   placeholder="Введіть ім'я"
+                   required
+            />
+            <br/>
+            <label for="last_name">Прізвище</label>
+            <input id="last_name" type="text" name="last_name"
+                   placeholder="Введіть прізвище"
+                   required
+            />
+            <br/>
+            <label for="email">Імейл</label>
+            <input id="email" type="text" name="email"
+                   placeholder="Введіть імейл"
+                   required
+            />
+        </div>
+
+        <div>
+            <label for="username">Ім'я користувача</label>
+            <input id="username" type="text" name="username"
+                   placeholder="Введіть мережеве ім'я"
+                   required
+            />
+            <br/>
+            <label for="password">Пароль</label>
+            <input id="password" type="password" name="password"
+                   placeholder="Введіть пароль"
+                   required
+            />
+            <br/>
+            <label for="confirm_password">Підтвердіть пароль</label>
+            <input type="password" id="confirm_password" name="confirm_password"
+                   placeholder="Підтвердіть пароль"
+                   required
+            />
+            <br/>
+            <button type="submit">Зареєструватися</button>
+        </div>
+    </form>
+
+</body>
+</html>
