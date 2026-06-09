@@ -25,7 +25,8 @@ class User(Base, UserMixin):
     password_hash: Mapped[str] = mapped_column(String(255), nullable=False)
     diaries: Mapped[list["Diary"]] = relationship(
         "Diary",
-        back_populates="user"
+        back_populates="user",
+        cascade="all, delete-orphan"
     )
 
 

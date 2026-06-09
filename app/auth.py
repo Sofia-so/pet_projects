@@ -119,6 +119,8 @@ def authent():
     @login_required
     def delete_account():
         user = current_user._get_current_object()
+        for diary in user.diaries:
+            session.delete(diary)
 
         logout_user()
         flash("Ваш акаунт було видалено")
