@@ -175,5 +175,3 @@ def authent():
             session.rollback()
             flash("Користувач з таким ім'ям користувача вже існує")
             return render_template("update_account.html")
-
-

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Мої щоденники</title>
+</head>
+<body>
+    <a href="{{ url_for('main.home') }}">Головна сторінка</a>
+    <br />
+    <a href="{{ url_for('main.profile') }}">Повернутися до облікового запису</a>
+    <h1>Список щоденників</h1>
+    <div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+    {% for diary in diary_list %}
+        <div>
+            <p>{{ diary.id }} - {{ diary.title }}</p>
+        </div>
+        <div>
+            <a href="{{ url_for('diary.update_diary', diary_id=diary.id) }}">
+                Редагувати
+            </a>
+            <br />
+            <a href="{{ url_for('diary.delete_diar', diary_id=diary.id) }}">
+                Видалити щоденник
+            </a>
+
+    {% endfor %}
+</body>
+</html>

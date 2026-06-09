@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Видалення щоденника</title>
+</head>
+<body>
+    <div>
+        <a href="{{ url_for('main.home') }}">Головна сторінка</a>
+        <br />
+        <a href="{{ url_for('diary.diaries') }}">Мої щоденники</a>
+        <br />
+        <a href="{{ url_for('main.profile') }}">Повернутися до облікового запису</a>
+    </div>
+    <div>
+        <h1>Видалити щоденник</h1>
+        <div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        </div>
+        <p>Ви дійсно бажаєте видалити щоденник?</p>
+        <p>Після видалення відновити щоденник і пов'язані з ним записи буде неможливо.</p>
+        <div>
+            <form action="{{ url_for('diary.delete_diary', diary_id=diary_id) }}"
+                  method="post"
+            >
+                <button type="submit">Видалити</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

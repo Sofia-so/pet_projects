@@ -4,6 +4,7 @@ from flask import (
 )
 
 from app.md_engine import session
+import app.diaries
 
 from dotenv import load_dotenv
 import os
@@ -14,10 +15,12 @@ def create_app():
     app = Flask(__name__)
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 
-    from app.blueprint import main_bp, auth_bp
-
+    from app.blueprint import (
+        main_bp,
+        auth_bp,
+        diary_bp
+    )
     from app.db import User
-
     from app.login_manager import login_manager
 
     login_manager.init_app(app)
@@ -36,5 +39,6 @@ def create_app():
 
     app.register_blueprint(main_bp)
     app.register_blueprint(auth_bp)
+    app.register_blueprint(diary_bp)
 
     return app

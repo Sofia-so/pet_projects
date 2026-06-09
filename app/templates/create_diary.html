@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Створити щоденник</title>
+</head>
+<body>
+    <a href="{{ url_for('main.home') }}">Головна сторінка</a>
+    <br />
+    <a href="{{ url_for('main.profile') }}">Повернутися до облікового запису</a>
+    <div>
+    <h1>Створити щоденник</h1>
+    <div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+    <form action="/create_diary" method="post">
+        <div>
+            <label for="title">Назва</label>
+            <input id="title"
+                   type="text"
+                   name="title"
+                   placeholder="Введіть назву"
+                   required
+            />
+            <br />
+            <label for="content">Вміст</label>
+            <input id="content"
+                   type="text"
+                   name="content"
+                   placeholder="Опис вмісту"
+            />
+            <br />
+            <button type="submit">Створити</button>
+        </div>
+    </form>
+</body>
+</html>

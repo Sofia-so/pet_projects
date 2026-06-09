@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Змінити дані щоденника</title>
+</head>
+<body>
+    <a href="{{ url_for('main.home') }}">Головна сторінка</a>
+    <br />
+    <a href="{{ url_for('main.profile') }}">Повернутися до облікового запису</a>
+    <br />
+    <a href="{{ url_for('diary.diaries') }}">Мої щоденники</a>
+    <h1>Змінити дані щоденника</h1>
+        <div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        </div>
+        {% if diary %}
+            <h2>{{ diary.title }}</h2>
+            <form action="{{ url_for('diary.update_diary', diary_id=diary.id) }}"
+                  method="post">
+            <div>
+                <label for="title">Назва</label>
+                <input id="title"
+                       type="text"
+                       name="title"
+                       placeholder="Введіть назву"
+                       value="{{ diary.content }}"
+                       required
+                />
+                <br />
+                <label for="content">Вміст</label>
+                <input id="content"
+                       type="text"
+                       name="content"
+                       value="{{ diary.content or '' }}"
+                       placeholder="Опис вмісту"
+                />
+                <br />
+                <button type="submit">Зберегти зміни</button>
+            </div>
+        </form>
+    {% endif %}
+</body>
+</html>
