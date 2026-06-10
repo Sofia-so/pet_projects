@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Записи</title>
+</head>
+<body>
+    <div>
+        <a href="{{ url_for('main.home') }}">Головна сторінка</a>
+        <br />
+        <a href="{{ url_for('main.profile') }}">Повернутися до облікового запису</a>
+        <br />
+        <a href="{{ url_for('diary.diaries') }}">Мої щоденники</a>
+    </div>
+    <div>
+        <h1>Записи</h1>
+        {% if not notes_list%}
+        <p>Записів немає</p>
+        {% endif %}
+        {% for note in notes_list %}
+            <p>{{ note.comment }}</p>
+            <p>{{ note.note_content }}</p>
+            <br />
+            <a href="{{ url_for('note.update_note', note_id=note.id) }}">
+                Змінити запис
+            </a>
+        {% endfor %}
+    </div>
+</body>
+</html>

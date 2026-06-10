@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Створити запис</title>
+</head>
+<body>
+    <div>
+        <a href="{{ url_for('main.home') }}">Головна сторінка</a>
+        <br />
+        <a href="{{ url_for('main.profile') }}">Повернутися до облікового запису</a>
+        <br />
+        <a href="{{ url_for('diary.diaries') }}">Мої щоденники</a>
+    </div>
+    <div>
+        <h1>Стоврити запис</h1>
+        <div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+        <form action="{{ url_for('note.create_note', diary_id=diary_id) }}"
+            method="post">
+            <label for="comment">Коментар до запису</label>
+            <input id="comment"
+                   type="text"
+                   name="comment"
+                   placeholder="Коментар до запису"
+            />
+            <br />
+            <label for="note_content">Запис</label>
+            <input id="note_content"
+                   type="text"
+                   name="note_content"
+                   placeholder="Запис"
+                   required
+            />
+            <button type="submit">Зберегти</button>
+        </form>
+    </div>
+</body>
+</html>

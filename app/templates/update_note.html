@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Змінити запис</title>
+</head>
+<body>
+    <div>
+        <a href="{{ url_for('main.home') }}">Головна сторінка</a>
+        <br />
+        <a href="{{ url_for('main.profile') }}">Повернутися до облікового запису</a>
+        <br />
+        <a href="{{ url_for('diary.diaries') }}">Мої щоденники</a>
+        <br />
+        <a href="{{ url_for('note.notes', diary_id=diary_id) }}">Записи</a>
+    </div>
+    <div>
+        <h1>Змінити запис</h1>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+        {% if note %}
+            <form action="{{ url_for('note.update_note', note_id=note.id) }}"
+                  method="post">
+                <label for="comment">Коментар до запису</label>
+                <input id="comment"
+                   type="text"
+                   name="comment"
+                   value="{{ note.comment or '' }}"
+                   placeholder="Коментар до запису"
+                />
+                <br />
+                <label for="note_content">Запис</label>
+                <input id="note_content"
+                   type="text"
+                   name="note_content"
+                   value="{{ note.note_content }}"
+                   placeholder="Запис"
+                   required
+                />
+                <br />
+                <button type="submit">Зберегти зміни</button>
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>

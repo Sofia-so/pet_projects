@@ -30,7 +30,14 @@
             <a href="{{ url_for('diary.delete_diar', diary_id=diary.id) }}">
                 Видалити щоденник
             </a>
-
+            <br />
+            <a href="{{ url_for('note.create_note', diary_id=diary.id) }}">
+                Створити запис
+            </a>
+            <br />
+            <a href="{{ url_for('note.notes', diary_id=diary.id) }}">
+                Записи
+            </a>
     {% endfor %}
 </body>
 </html>

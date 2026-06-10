@@ -4,7 +4,7 @@ from flask import (
 )
 
 from app.md_engine import session
-import app.diaries
+import app.diaries, app.note
 
 from dotenv import load_dotenv
 import os
@@ -18,7 +18,8 @@ def create_app():
     from app.blueprint import (
         main_bp,
         auth_bp,
-        diary_bp
+        diary_bp,
+        note_bp
     )
     from app.db import User
     from app.login_manager import login_manager
@@ -40,5 +41,6 @@ def create_app():
     app.register_blueprint(main_bp)
     app.register_blueprint(auth_bp)
     app.register_blueprint(diary_bp)
+    app.register_blueprint(note_bp)
 
     return app
