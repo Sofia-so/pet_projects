@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Видалення запису</title>
+</head>
+<body>
+    <div>
+        <a href="{{ url_for('main.home') }}">Головна сторінка</a>
+        <br />
+        <a href="{{ url_for('main.profile') }}">Повернутися до облікового запису</a>
+        <br />
+        <a href="{{ url_for('diary.diaries') }}">Мої щоденники</a>
+        <br />
+        <a href="{{ url_for('note.notes', diary_id=diary_id) }}">Записи</a>
+    </div>
+    <div>
+        <h1>Видалити запис</h1>
+        <p>Ви дійсно бажаєте видалити запис?</p>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form action="{{ url_for('note.delete_finally_note', note_id=note.id) }}"
+              method="post">
+            <br />
+            <button type="submit">Видалити</button>
+        </form>
+    </div>
+</body>
+</html>

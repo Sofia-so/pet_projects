@@ -67,6 +67,7 @@ def authent():
             except IntegrityError:
                 session.rollback()
                 flash("Користувач з таким ім'ям користувача вже існує")
+                flash("Або користувач із цією електронною адресою вже зареєстрований")
                 return render_template("register.html")
 
         return render_template("register.html")
@@ -174,4 +175,5 @@ def authent():
         except IntegrityError:
             session.rollback()
             flash("Користувач з таким ім'ям користувача вже існує")
+            flash("Або користувач із цією електронною адресою вже зареєстрований")
             return render_template("update_account.html")

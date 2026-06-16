@@ -76,3 +76,44 @@ def update_note(note_id):
         diary_id=note.diary_id,
         note=note
     )
+
+
+@note_bp.route("/delete_note/<int:note_id>", methods=["GET"])
+@login_required
+def delete_note(note_id):
+    note = session.query(Note).filter(
+        Note.id == note_id
+    ).first()
+
+    if not note:
+        return "Запис не знайдено", 404
+
+    return render_template(
+        "delete_note.html",
+        note_id=note.id,
+        diary_id=note.diary_id,
+        note=note
+    )
+
+
+@note_bp.route("/delete_finally_note/<int:note_id>", methods=["POST", "GET"])
+@login_required
+def delete_finally_note(note_id):
+    note = session.query(Note).filter(
+        Note.id == note_id
+    ).first()
+
+    if not note:
+        flash("Запис не знайдено")
+        return  redirect(url_for("diary.diaries"))
+
+    diary_id = note.diary_id
+
+    session.delete(note)
+    session.commit()
+    flash("Запис було видалено")
+
+    return redirect(url_for(
+        "note.notes",
+          diary_id=diary_id,
+    ))

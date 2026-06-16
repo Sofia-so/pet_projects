@@ -19,10 +19,14 @@
         {% endif %}
         {% for note in notes_list %}
             <p>{{ note.comment }}</p>
-            <p>{{ note.note_content }}</p>
+            <h2>{{ note.note_content }}</h2>
             <br />
             <a href="{{ url_for('note.update_note', note_id=note.id) }}">
                 Змінити запис
+            </a>
+            <br />
+            <a href="{{ url_for('note.delete_note', note_id=note.id) }}">
+                Видалити запис
             </a>
         {% endfor %}
     </div>
