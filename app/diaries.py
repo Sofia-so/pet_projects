@@ -11,9 +11,9 @@ from app.md_engine import session
 def create_diary():
     if request.method == "POST":
         diary = Diary(
-        user=current_user,
-        title=request.form.get("title"),
-        content=request.form.get("content")
+            user=current_user,
+            title=request.form.get("title"),
+            content=request.form.get("content")
         )
         session.add(diary)
         session.commit()

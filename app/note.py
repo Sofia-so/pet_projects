@@ -5,10 +5,8 @@ from flask import (
     url_for,
     flash
 )
-from flask_login import (
-    login_required,
-    current_user
-)
+from flask_login import login_required
+
 from app.blueprint import note_bp
 from app.db import Note, Diary
 from app.md_engine import session
@@ -24,7 +22,7 @@ def create_note(diary_id):
         note = Note(
             comment=comment,
             note_content=note_content,
-            diary_id = diary_id
+            diary_id=diary_id
         )
 
         flash("Запис успішно створено")
@@ -105,7 +103,7 @@ def delete_finally_note(note_id):
 
     if not note:
         flash("Запис не знайдено")
-        return  redirect(url_for("diary.diaries"))
+        return redirect(url_for("diary.diaries"))
 
     diary_id = note.diary_id
 
@@ -115,5 +113,5 @@ def delete_finally_note(note_id):
 
     return redirect(url_for(
         "note.notes",
-          diary_id=diary_id,
+        diary_id=diary_id,
     ))

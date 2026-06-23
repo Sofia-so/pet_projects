@@ -3,9 +3,6 @@ from flask import (
     render_template
 )
 
-from app.md_engine import session
-import app.diaries, app.note
-
 from dotenv import load_dotenv
 import os
 
@@ -14,6 +11,11 @@ def create_app():
 
     app = Flask(__name__)
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+    config_type = os.getenv(
+        "CONFIG_TYPE",
+        default="app.config.Config"
+    )
+    app.config.from_object(config_type)
 
     from app.blueprint import (
         main_bp,
@@ -21,18 +23,16 @@ def create_app():
         diary_bp,
         note_bp
     )
-    from app.db import User
+
     from app.login_manager import login_manager
 
     login_manager.init_app(app)
 
     load_dotenv()
 
-
     @main_bp.route('/')
     def home():
         return render_template("main_page.html")
-
 
     from app.auth import authent
 

@@ -55,11 +55,11 @@ def authent():
 
             try:
                 user = User(
-                first_name=first_name,
-                last_name=last_name,
-                username=username,
-                email=email,
-                password_hash=password_hash
+                    first_name=first_name,
+                    last_name=last_name,
+                    username=username,
+                    email=email,
+                    password_hash=password_hash
                 )
                 session.add(user)
                 session.commit()
@@ -67,16 +67,16 @@ def authent():
             except IntegrityError:
                 session.rollback()
                 flash("Користувач з таким ім'ям користувача вже існує")
-                flash("Або користувач із цією електронною адресою вже зареєстрований")
+                flash(
+                    "Або користувач із цією електронною адресою вже зареєстрований"
+                )
                 return render_template("register.html")
 
         return render_template("register.html")
 
-
     @login_manager.user_loader
     def load_user(user_id):
         return session.get(User, int(user_id))
-
 
     @auth_bp.route("/login", methods=["POST", "GET"])
     def login():
@@ -104,17 +104,15 @@ def authent():
         logout_user()
         return redirect(url_for("main.home"))
 
-
     @main_bp.route("/profile")
     @login_required
     def profile():
         return render_template("account_login.html")
 
-
     @auth_bp.route("/delete_user")
+    @login_required
     def delete_user():
         return render_template("delete_account.html")
-
 
     @auth_bp.route("/delete_account", methods=["POST"])
     @login_required
@@ -127,7 +125,6 @@ def authent():
         session.commit()
 
         return redirect(url_for("auth.delete_user"))
-
 
     @auth_bp.route("/update_account", methods=["POST", "GET"])
     @login_required
@@ -160,20 +157,22 @@ def authent():
         password_hash = generate_password_hash(password)
 
         try:
-             user.first_name = first_name
-             user.last_name = last_name
-             user.username = username
-             user.email = email
-             user.password_hash = password_hash
+            user.first_name = first_name
+            user.last_name = last_name
+            user.username = username
+            user.email = email
+            user.password_hash = password_hash
 
-             session.commit()
+            session.commit()
 
-             flash("Дані облікового запису успішно оновлено")
+            flash("Дані облікового запису успішно оновлено")
 
-             return redirect(url_for("main.profile"))
+            return redirect(url_for("main.profile"))
 
         except IntegrityError:
             session.rollback()
             flash("Користувач з таким ім'ям користувача вже існує")
-            flash("Або користувач із цією електронною адресою вже зареєстрований")
+            flash(
+                "Або користувач із цією електронною адресою вже зареєстрований"
+            )
             return render_template("update_account.html")

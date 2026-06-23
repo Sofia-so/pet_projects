@@ -12,4 +12,4 @@ engine = create_engine(
 )
 
 Session = sessionmaker(bind=engine)
-session=Session()
+session = Session()
