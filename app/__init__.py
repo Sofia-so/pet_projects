@@ -6,6 +6,8 @@ from flask import (
 from dotenv import load_dotenv
 import os
 
+import app.diaries, app.note
+
 
 def create_app():
 
