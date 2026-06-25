@@ -61,7 +61,7 @@ def update_diary(diary_id):
         flash("Зміни збережено")
 
         return redirect(
-            url_for("diary.update_diary", diary_id=diary_id,)
+            url_for("diary.update_diary", diary_id=diary_id)
         )
 
     return render_template(
@@ -70,7 +70,7 @@ def update_diary(diary_id):
         diary=diary)
 
 
-@diary_bp.route("/delete_diary/<int:diary_id>", methods=["POST", "GET"])
+@diary_bp.route("/delete_diary/<int:diary_id>", methods=["POST"])
 @login_required
 def delete_diary(diary_id):
     diary = session.query(Diary).filter(
@@ -82,20 +82,29 @@ def delete_diary(diary_id):
         flash("Щоденник не знайдено")
         return redirect(url_for("diary.diaries"))
 
-    flash("Щоденник було видалено")
     session.delete(diary)
     session.commit()
+    flash("Щоденник було видалено")
 
     return redirect(url_for(
-        "diary.delete_diar",
-        diary_id=diary_id
+        "diary.diaries"
     ))
 
 
-@diary_bp.route("/delete_diar/<int:diary_id>", methods=["POST", "GET"])
+@diary_bp.route("/delete_diar/<int:diary_id>", methods=["GET"])
 @login_required
 def delete_diar(diary_id):
+    diary = session.query(Diary).filter(
+        Diary.id == diary_id,
+        Diary.user_id == current_user.id
+    ).first()
+
+    if diary is None:
+        flash("Щоденник не знайдено")
+        return redirect(url_for("diary.diaries"))
+
     return render_template(
         "delete_diary.html",
+        diary=diary,
         diary_id=diary_id
     )

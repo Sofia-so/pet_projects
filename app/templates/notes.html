@@ -13,6 +13,15 @@
         <a href="{{ url_for('diary.diaries') }}">Мої щоденники</a>
     </div>
     <div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+    <div>
         <h1>Записи</h1>
         {% if not notes_list%}
         <p>Записів немає</p>

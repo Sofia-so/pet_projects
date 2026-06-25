@@ -94,7 +94,7 @@ def delete_note(note_id):
     )
 
 
-@note_bp.route("/delete_finally_note/<int:note_id>", methods=["POST", "GET"])
+@note_bp.route("/delete_finally_note/<int:note_id>", methods=["POST"])
 @login_required
 def delete_finally_note(note_id):
     note = session.query(Note).filter(
