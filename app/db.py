@@ -71,6 +71,3 @@ class Note(Base):
         "Diary",
         back_populates="notes"
     )
-
-
-Base.metadata.create_all(engine)
