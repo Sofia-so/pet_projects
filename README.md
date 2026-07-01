@@ -1,25 +1,45 @@
-Веб-застосунок на Flask
+# Flask Diary Web Application
 
-Технології: Python, Flask, SQLAlchemy, PostgreSQL, Alembic, Flask-Login, Jinja2, HTML, Git, Pytest.
+A simple web application for managing diaries and notes built with Flask.
 
-• Реалізовано реєстрацію та авторизацію користувачів за допомогою Flask-Login.
+## Tech Stack
+- Python
+- Flask
+- SQLAlchemy
+- PostgreSQL
+- Alembic
+- Flask-Login
+- Jinja2
+- HTML
+- Git
+- Pytest
 
-• Розроблено функціонал керування обліковими записами користувачів (редагування та видалення профілю).
+## Features
 
-• Реалізовано CRUD-функціонал для щоденників та записів: створення, перегляд, редагування та видалення записів.
+-  User registration and authentication (Flask-Login)
+-  User profile management (edit, delete account)
+-  Diary management system
+-  CRUD operations for notes (create, read, update, delete)
+-  One-to-Many relationships (User → Diaries → Notes)
+-  PostgreSQL database integration via SQLAlchemy ORM
+-  Database migrations using Alembic
+-  Data validation and error handling
+-  HTML templates with Jinja2
+-  Automated tests with Pytest and Flask Test Client
 
-• Налаштовано зв’язоки між користувачами та щоденниками (One-to-Many), щоденниками та записами  (One-to-Many) - за допомогою SQLAlchemy ORM.
+## Database Diagram
 
-• Реалізовано роботу з базою даних PostgreSQL через SQLAlchemy ORM.
+![Database Diagram](docs/erd.png)
 
-• Налаштовано керування схемою бази даних та міграції за допомогою Alembic.
+## Project Purpose
 
-• Налаштовано валідацію даних форм та обробку помилок користувацького вводу.
+This project was created to practice backend development with Flask, including authentication, database design, and testing.
 
-• Створено HTML-шаблони з використанням Jinja2 для відображення даних та взаємодії з користувачем.
+---
 
-• Використовується Git для контролю версій та керування кодовою базою.
+##  Author
 
-• Створено набір автоматизованих тестів із використанням Pytest для перевірки маршрутів, авторизації, реєстрації, оновлення та видалення облікових записів.
+**Sofia Sudarkova**
 
-• Написано автоматизовані тести із використанням Pytest та Flask Test Client для перевірки маршрутів, авторизації, реєстрації, CRUD-операцій для щоденників, а також обробки помилок.
+GitHub: https://github.com/Sofia-so  
+Email: sudarkovasofia0@gmail.com
