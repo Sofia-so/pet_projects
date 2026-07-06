@@ -37,13 +37,14 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Create .env
-        run: |
-          echo "SECRET_KEY=test_secret" > .env
-          echo "DATABASE_URI=postgresql://postgres:postgres@localhost:5432/my_project_test" >> .env
-
       - name: Run migrations
+        env:
+          DATABASE_URI: postgresql://postgres:postgres@localhost:5432/my_project_test
+          SECRET_KEY: test_secret
         run: alembic upgrade head
 
       - name: Run tests
+        env:
+          DATABASE_URI: postgresql://postgres:postgres@localhost:5432/my_project_test
+          SECRET_KEY: test_secret
         run: python -m pytest tests
