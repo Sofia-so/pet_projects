@@ -1,12 +1,14 @@
-from flask import (
-    Flask,
-    render_template
-)
+from flask import Flask
 
 from dotenv import load_dotenv
 import os
 
-import app.diaries, app.note
+from app import (
+    diaries,
+    note,
+    home,
+    auth
+)
 
 
 def create_app():
@@ -31,14 +33,6 @@ def create_app():
     login_manager.init_app(app)
 
     load_dotenv()
-
-    @main_bp.route('/')
-    def home():
-        return render_template("main_page.html")
-
-    from app.auth import authent
-
-    authent()
 
     app.register_blueprint(main_bp)
     app.register_blueprint(auth_bp)

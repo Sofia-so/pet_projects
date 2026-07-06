@@ -11,8 +11,6 @@ from sqlalchemy import (
 )
 from flask_login import UserMixin
 
-from app.md_engine import engine
-
 
 class Base(DeclarativeBase):
     pass
