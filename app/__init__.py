@@ -14,6 +14,9 @@ from app import (
 def create_app():
 
     app = Flask(__name__)
+    
+    load_dotenv()
+    
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
     config_type = os.getenv(
         "CONFIG_TYPE",
@@ -31,8 +34,6 @@ def create_app():
     from app.login_manager import login_manager
 
     login_manager.init_app(app)
-
-    load_dotenv()
 
     app.register_blueprint(main_bp)
     app.register_blueprint(auth_bp)
