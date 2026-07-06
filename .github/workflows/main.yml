@@ -41,6 +41,8 @@ jobs:
         env:
           DATABASE_URI: postgresql://postgres:postgres@localhost:5432/my_project_test
           SECRET_KEY: test_secret
+          TEST_DATABASE_URI: postgresql://postgres:postgres@localhost:5432/my_project_test
+          TEST_SECRET_KEY: test_secret
         run: alembic upgrade head
 
       - name: Run tests
@@ -48,4 +50,5 @@ jobs:
           DATABASE_URI: postgresql://postgres:postgres@localhost:5432/my_project_test
           TEST_DATABASE_URI: postgresql://postgres:postgres@localhost:5432/my_project_test
           SECRET_KEY: test_secret
+          TEST_SECRET_KEY: test_secret
         run: python -m pytest tests
