@@ -7,6 +7,8 @@ services:
     restart: unless-stopped
     env_file:
       - .env
+    environment:
+      DATABASE_URI: ${DOCKER_DATABASE_URI}
     ports:
       - "5000:5000"
     depends_on:

@@ -52,3 +52,5 @@ jobs:
           SECRET_KEY: test_secret
           TEST_SECRET_KEY: test_secret
         run: python -m pytest tests
+      - name: Build Docker image
+        run: docker build -t flask-app .
