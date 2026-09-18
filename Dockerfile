@@ -13,4 +13,4 @@ COPY . .
 
 EXPOSE 5000
 
-CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:$PORT --factory app:create_app"]
+CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:$PORT 'app:create_app()'"]
