@@ -5,6 +5,7 @@ Flask-Migrate==4.1.0
 
 SQLAlchemy==2.0.50
 alembic==1.18.4
+gunicorn
 
 psycopg2-binary==2.9.12
 
