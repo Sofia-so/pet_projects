@@ -1,6 +1,6 @@
 FROM python:3.12-slim
 
-WORKDIR /srcgit add
+WORKDIR /src
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
@@ -13,4 +13,4 @@ COPY . .
 
 EXPOSE 5000
 
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:create_app()"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--factory", "app:create_app()"]
