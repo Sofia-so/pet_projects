@@ -17,6 +17,7 @@ A simple web application for managing diaries and notes built with Flask.
 - Pytest
 - GitHub Actions
 - Docker / Docker Hub
+- Render
 
 ## Features
 
