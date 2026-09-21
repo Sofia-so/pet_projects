@@ -16,6 +16,7 @@ A simple web application for managing diaries and notes built with Flask.
 - Git
 - Pytest
 - GitHub Actions
+- Docker / Docker Hub
 
 ## Features
 
@@ -29,6 +30,7 @@ A simple web application for managing diaries and notes built with Flask.
 -  Data validation and error handling
 -  HTML templates with Jinja2
 -  Automated tests with Pytest and Flask Test Client
+-  Containerized application with Docker
  
  ## Continuous Integration
  
@@ -37,6 +39,13 @@ The project uses GitHub Actions to:
 - run Alembic database migrations;
 - execute the Pytest test suite;
 - verify every push and pull request.
+
+## Deployment
+
+The application is deployed on Render.
+
+Live application:  
+https://pet-projects-4g7e.onrender.com
 
 ## Database Diagram
 
@@ -95,12 +104,26 @@ alembic upgrade head
 flask --app app:create_app --debug run
 ```
 
+### Build the image
+
+```bash
+docker build -t flask-diary .
+```
+### Run the container
+
+```bash
+docker run -p 5001:5000 \
+  -e PORT=5000 \
+  -e DATABASE_URI="your_database_uri" \
+  pet_projects-web
+```
+
 ## License
 
 No license has been specified for this project.
 ---
 
-##  Author
+## Author
 
 **Sofia Sudarkova**
 
